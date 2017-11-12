@@ -9,8 +9,8 @@ public:
 	friend ostream &operator<<(ostream & out, Car const& c);
 	int older(Car);
 	int stronger(Car);
-	Car olderCar(Car);
-	Car strongerCar(Car);
+	Car& olderCar(Car&);
+	Car& strongerCar(Car&);
 	void setYear(int);
 	char* GetMake();
 	char* GetModel();
@@ -90,19 +90,15 @@ int Car::stronger(Car c)
 }
 
 //return the older car
-Car Car::olderCar(Car c)
+Car& Car::olderCar(Car &c)
 {
-	if ((*this).older(c) > 0)
-		return *this;
-	return c;
+	(older(c) > 0) ? *this : c;
 }
 
 //return the car with the stronger engine
-Car Car::strongerCar(Car c)
+Car& Car::strongerCar(Car &c)
 {
-	if ((*this).stronger(c) > 0)
-		return *this;
-	return c;
+	 (stronger(c) > 0) ? *this : c;
 }
 
 
